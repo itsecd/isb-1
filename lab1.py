@@ -1,6 +1,8 @@
 
 def saveFile(str: str, fileName: str) -> None:
     with open(f'{fileName}.txt', 'w', encoding="utf-8") as f:
+        if (type(str) == 'dict'):
+            print(str, file=f)
         f.write(str)
         # print(str, file=f)
 
@@ -41,7 +43,7 @@ def makeDic():
         tmpLetter = (input('Char: '))
         tmpLetter = tmpLetter.upper()
         tmpValue = float(input('Value: '))
-        if(tmpValue == -1):
+        if (tmpValue == -1):
             break
         res[tmpLetter] = tmpValue
     sorted(res.items())
