@@ -23,6 +23,8 @@ def encryption(message: str) -> None:
     f.close()
 
 
+
+
 def key() -> None:
     key = ''
     for elem in alphabet_ru:
@@ -41,23 +43,41 @@ def decoding() -> None:
     f = open("cod8.txt", mode='r', encoding='utf-8')
     new_dict = {}
     text = f.read()
-    text = text.upper()
     length = len(text)
+    tmp = []
     for elem in text:
         count = 0
-        if elem not in new_dict:
+        if elem not in tmp:
+            print()
             for j in text:
                 if j == elem:
                     count += 1
             new_dict[elem] = count / length
+            tmp.append(elem)
     f.close()
     result = sorted(new_dict.items(), key=lambda t: t[1], reverse=True)
     print(result)
+    new_tmp = ''
+    for i in text:
+        if i == 'Я':
+            new_tmp += '&&&'
+        elif i == 'Д':
+            new_tmp += 'о'
+        elif i == '4':
+            new_tmp += 'и'
+        # elif i == 'М':
+        #     new_tmp += 'а'
+        elif i == 't':
+            new_tmp += 'а'
+        else:
+            new_tmp += i
+    print(new_tmp)
+
 
 
 if __name__ == '__main__':
-    print('Шаг шифровки: 1')
-    message = input("Сообщение для шифровки: ").upper()
-    encryption(message)
+    # print('Шаг шифровки: 1')
+    # message = input("Сообщение для шифровки: ").upper()
+    # encryption(message)
     new_key = key()
     decoding()
