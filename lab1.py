@@ -1,8 +1,8 @@
 
 def saveFile(str: str, fileName: str) -> None:
     with open(f'{fileName}.txt', 'w', encoding="utf-8") as f:
-        if (type(str) == 'dict'):
-            print(str, file=f)
+        # if (type(str) == 'dict'):
+        #     print(str, file=f)
         f.write(str)
         # print(str, file=f)
 
@@ -76,50 +76,79 @@ if __name__ == '__main__':
     # saveFile(createKey(1), "key")
     # saveFile(encrypt(text, 1), "encrypted")
 
-    text2 = '''КwЧ5Д>ЫХЧ1ЪЕt Й2>ХИЬЧЙ ФХ 1 ХБЧБХЫПЫХЪЕЩЕtФЙХБЕ2rtЫИИ ХrЕЯЩЕ1ФУЙХДЫХЙЕ17БЕХ8ЛЛЫБЙ
-ЩДЕХМtЧД Й7ХБЕДЛ wЫД4 Ч17Д>ЫХwЧДД>ЫХДЕХ ХДЧrt
-2ЫtХЯДЧ5 ЙЫ17ДЕХК2ЫД7О
-Й7ХtЧЯ2ЫtХrtЕЪtЧ22>ХБЕЙЕtКУХЯЧХЕw ДХrt
-Ы2Х2ЕЬДЕХЯЧЪtКЯ Й7ХЩХrЧ2ФЙ7Х Х ИrЕ1Д
-Й7ХИКПЫИЙЩКЫЙХДЫХ2ЫД7ОЫХwУЬ Д>ХtЧЯ1
-5Д>МХКrЧБЕЩП БЕЩХ ИrЕ1Д 2>МХЛЧА1ЕЩХДЫБЕЙЕt>ЫХ
-ЯХД МХИЕwЫtЬЧЙХtЫЧ1 ЯЧ4 ХЧ1ЪЕt Й2ЕЩХО ЛtЕЩЧД
-ФХИХ4Ы17УХКИ1ЕЬД Й7ХЬ ЯД7ХrЕЙЫД4
-Ч17Д>2ХМЧБЫtЧ2ХДЕХД ХЩХЕwДЕАХ ЯХД МХЧ1ЪЕt Й2ХО
-ЛtЕЩЧД ФХД БЧБХДЫХИЩФЯЧДХИХЧ1ЪЕt Й2Е2ХИЬЧЙ ФХЕД
-ХtЫЧ1 ЯЕЩЧД>ХБЧБХЕЙwЫ17Д>ЫХЧ1ЪЕt Й2>Х Х
-ИrЕ17ЯКУЙИФХtЧЯwЫ17Д'''
+    text2 = "КwЧ5Д>ЫХЧ1ЪЕt Й2>ХИЬЧЙ ФХ 1 ХБЧБХЫПЫХЪЕЩЕtФЙХБЕ2rtЫИИ ХrЕЯЩЕ1ФУЙХДЫХЙЕ17БЕХ8ЛЛЫБЙ ЩДЕХМtЧД Й7ХБЕДЛ wЫД4 Ч17Д>ЫХwЧДД>ЫХДЕХ ХДЧrt 2ЫtХЯДЧ5 ЙЫ17ДЕХК2ЫД7О Й7ХtЧЯ2ЫtХrtЕЪtЧ22>ХБЕЙЕtКУХЯЧХЕw ДХrt Ы2Х2ЕЬДЕХЯЧЪtКЯ Й7ХЩХrЧ2ФЙ7Х Х ИrЕ1Д Й7ХИКПЫИЙЩКЫЙХДЫХ2ЫД7ОЫХwУЬ Д>ХtЧЯ1 5Д>МХКrЧБЕЩП БЕЩХ ИrЕ1Д 2>МХЛЧА1ЕЩХДЫБЕЙЕt>ЫХ ЯХД МХИЕwЫtЬЧЙХtЫЧ1 ЯЧ4 ХЧ1ЪЕt Й2ЕЩХО ЛtЕЩЧД ФХИХ4Ы17УХКИ1ЕЬД Й7ХЬ ЯД7ХrЕЙЫД4 Ч17Д>2ХМЧБЫtЧ2ХДЕХД ХЩХЕwДЕАХ ЯХД МХЧ1ЪЕt Й2ХО ЛtЕЩЧД ФХД БЧБХДЫХИЩФЯЧДХИХЧ1ЪЕt Й2Е2ХИЬЧЙ ФХЕД ХtЫЧ1 ЯЕЩЧД>ХБЧБХЕЙwЫ17Д>ЫХЧ1ЪЕt Й2>Х Х ИrЕ17ЯКУЙИФХtЧЯwЫ17ДЕ"
+    saveFile(text2, "cod7")
+    
+    dictin = createDic(text2)
 
+    resDic = {}
     tmp = text2.replace(' ', '_')
+    resDic[' '] = 'и'
     tmp = tmp.replace('Х', ' ')
-    tmp = tmp.replace('Е','о')
-    tmp = tmp.replace('Д','н')
-    tmp = tmp.replace('_','и')
-    tmp = tmp.replace('1','л')
-    tmp = tmp.replace('Б','к')
-    tmp = tmp.replace('Ч','а')
-    tmp = tmp.replace('Ы','е') # т
-    tmp = tmp.replace('П','щ') # у
+    resDic['Х'] = ' '
+    tmp = tmp.replace('Е', 'о')
+    resDic['Е'] = 'о'
+    tmp = tmp.replace('Д', 'н')
+    resDic['Д'] = 'н'
+    tmp = tmp.replace('_', 'и')
+    tmp = tmp.replace('1', 'л')
+    resDic['1'] = 'л'
+    tmp = tmp.replace('Б', 'к')
+    resDic['Б'] = 'к'
+    tmp = tmp.replace('Ч', 'а')
+    resDic['Ч'] = 'а'
+    tmp = tmp.replace('Ы', 'е') # т
+    resDic['Ы'] = 'е'
+    tmp = tmp.replace('П', 'щ') # у
+    resDic['П'] = 'щ'
     tmp = tmp.replace('И', 'с')
+    resDic['И'] = 'с'
     tmp = tmp.replace('Щ', 'в')
+    resDic['Щ'] = 'в'
     tmp = tmp.replace('Ф', 'я')
+    resDic['Ф'] = 'я'
     tmp = tmp.replace('Я', 'з')
+    resDic['Я'] = 'з'
     tmp = tmp.replace('w', 'д')
+    resDic['w'] = 'д'
     tmp = tmp.replace('А', 'й')
+    resDic['А'] = 'й'
     tmp = tmp.replace('М', 'х')
+    resDic['М'] = 'х'
     tmp = tmp.replace('r', 'п')
+    resDic['r'] = 'п'
     tmp = tmp.replace('Л', 'ф')
+    resDic['Л'] = 'ф'
     tmp = tmp.replace('О', 'ш')
+    resDic['О'] = 'ш'
     tmp = tmp.replace('t', 'р')
+    resDic['t'] = 'р'
     tmp = tmp.replace('Ъ', 'г')
+    resDic['Ъ'] = 'г'
     tmp = tmp.replace('Й', 'т') #м
+    resDic['Й'] = 'т'
     tmp = tmp.replace('7', 'ь')
+    resDic['7'] = 'ь'
     tmp = tmp.replace('Ь', 'ж')
-    tmp = tmp.replace('Ь', 'ж')
+    resDic['Ь'] = 'ж'
+
     tmp = tmp.replace('2', 'м')
+    resDic['2'] = 'м'
     tmp = tmp.replace('У', 'ю')
+    resDic['У'] = 'ю'
     tmp = tmp.replace('8', 'э')
+    resDic['8'] = 'э'
     tmp = tmp.replace('>', 'ы')
+    resDic['>'] = 'ы'
     tmp = tmp.replace('5', 'ч')
+    resDic['5'] = 'ч'
     tmp = tmp.replace('К', 'у')
+    resDic['К'] = 'у'
     tmp = tmp.replace('4', 'ц')
+    resDic['4'] = 'ц'
+
+
+    with open('key2.txt', 'w', encoding="utf-8") as f:
+        print(resDic, file=f)
+    saveFile(tmp, "decrypt")
+
