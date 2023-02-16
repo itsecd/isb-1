@@ -90,3 +90,36 @@ if __name__ == '__main__':
 ХtЫЧ1 ЯЕЩЧД>ХБЧБХЕЙwЫ17Д>ЫХЧ1ЪЕt Й2>Х Х
 ИrЕ17ЯКУЙИФХtЧЯwЫ17Д'''
 
+    tmp = text2.replace(' ', '_')
+    tmp = tmp.replace('Х', ' ')
+    tmp = tmp.replace('Е','о')
+    tmp = tmp.replace('Д','н')
+    tmp = tmp.replace('_','и')
+    tmp = tmp.replace('1','л')
+    tmp = tmp.replace('Б','к')
+    tmp = tmp.replace('Ч','а')
+    tmp = tmp.replace('Ы','е') # т
+    tmp = tmp.replace('П','щ') # у
+    tmp = tmp.replace('И', 'с')
+    tmp = tmp.replace('Щ', 'в')
+    tmp = tmp.replace('Ф', 'я')
+    tmp = tmp.replace('Я', 'з')
+    tmp = tmp.replace('w', 'д')
+    tmp = tmp.replace('А', 'й')
+    tmp = tmp.replace('М', 'х')
+    tmp = tmp.replace('r', 'п')
+    tmp = tmp.replace('Л', 'ф')
+    tmp = tmp.replace('О', 'ш')
+    tmp = tmp.replace('t', 'р')
+    tmp = tmp.replace('Ъ', 'г')
+    tmp = tmp.replace('Й', 'т') #м
+    tmp = tmp.replace('7', 'ь')
+    tmp = tmp.replace('Ь', 'ж')
+    tmp = tmp.replace('Ь', 'ж')
+    tmp = tmp.replace('2', 'м')
+    tmp = tmp.replace('У', 'ю')
+    tmp = tmp.replace('8', 'э')
+    tmp = tmp.replace('>', 'ы')
+    tmp = tmp.replace('5', 'ч')
+    tmp = tmp.replace('К', 'у')
+    tmp = tmp.replace('4', 'ц')
