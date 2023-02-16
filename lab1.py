@@ -57,12 +57,16 @@ def createDic(str: str):
     for i in tmp:
         count = 0
         for j in str:
-            if(i == j):
-                count+=1
+            if (i == j):
+                count += 1
         res[i] = count/length
     res = dict(sorted(res.items(), key=lambda item: item[1]))
-    res =dict(reversed(list(res.items())))
+    res = dict(reversed(list(res.items())))
     return res
+
+
+def replaceLetter(text: str, letterOld: str, letterNew: str):
+    text.replace(letterOld, letterNew)
 
 
 if __name__ == '__main__':
@@ -85,37 +89,3 @@ if __name__ == '__main__':
 ЛtЕЩЧД ФХД БЧБХДЫХИЩФЯЧДХИХЧ1ЪЕt Й2Е2ХИЬЧЙ ФХЕД
 ХtЫЧ1 ЯЕЩЧД>ХБЧБХЕЙwЫ17Д>ЫХЧ1ЪЕt Й2>Х Х
 ИrЕ17ЯКУЙИФХtЧЯwЫ17Д'''
-# dictLang = {}
-# dictLang[' '] = 0.128675
-# dictLang['О'] = 0.096456
-# dictLang['И'] = 0.075312
-# dictLang[""Е""] = 0.072292
-# dictLang[""А""] = 0.064841
-# dictLang[""Н""] = 0.061820
-# dictLang[""Т""] = 0.061619
-# dictLang[""С""] = 0.051953
-# dictLang[""Р""] = 0.040677
-# В = 0.039267
-# М = 0.029803
-# Л = 0.029400
-# Д = 0.026983
-# Я = 0.026379
-# К = 0.025977
-# П = 0.024768
-# З = 0.015908
-# Ы = 0.015707
-# Ь = 0.015103
-# У = 0.013290
-# Ч = 0.011679
-# Ж = 0.010673
-# Г = 0.009867
-# Х = 0.008659
-# Ф = 0.007249
-# Й = 0.006847
-# Ю = 0.006847
-# Б = 0.006645
-# Ц = 0.005034
-# Ш = 0.004229
-# Щ = 0.003625
-# Э = 0.002416
-# Ъ = 0.000000
