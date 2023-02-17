@@ -1,7 +1,7 @@
 string = "" 
 shift = int(input()) 
  
-with open("files/Part_I/text_encrypted", "r", encoding="utf-8") as f: 
+with open("files/Part_I/text", "r", encoding="utf-8") as f: 
     text = f.read().split() 
     for word in text: 
         for l in word: 
