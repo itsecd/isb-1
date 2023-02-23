@@ -1,21 +1,21 @@
 RUSSIAN_ALPHABET = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯАБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ'
 BY_FREQUENCY_ALPHABET = ' ОИЕАНТСРВМЛДЯКПЗЫЬУЧЖГХФЙЮБЦШЩЭЪ'
 
-def read_file(filename: str):
+def read_file(filename: str) -> str:
     """
         function to read data from a file
     """
     with open(filename, 'r', encoding='utf-8', newline='') as file:
         return file.read().upper()
 
-def write_in_file(filename: str, data: str):
+def write_in_file(filename: str, data: str) -> None:
     """
         function to write data to file
     """
     with open(filename, 'w', encoding='utf-8', newline='') as file:
         file.write(data)
 
-def text_encoding_сaesars_cipher():
+def text_encoding_сaesars_cipher() -> str:
     """
         function of text encoding by simple permutation codes using a special Caesar cipher.
         :encryption_step: - encryption step (how much we shift the position of the letter in the alphabet).
@@ -33,7 +33,11 @@ def text_encoding_сaesars_cipher():
             result_ciphers += i
     return result_ciphers
 
-res = text_encoding_сaesars_cipher()
-write_in_file("encryption.txt", res)
-
+def repetition_rate_generation(your_text: str):
+    dictionary = dict()
+    for i in your_text:
+        dictionary[i] = your_text.count(i)
+    dictionary = dict(sorted(dictionary.items(), key=lambda item: item[1], reverse=True))
+    # print(dictionary)
+    return dictionary
 
