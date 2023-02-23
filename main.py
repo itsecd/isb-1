@@ -33,11 +33,19 @@ def text_encoding_сaesars_cipher() -> str:
             result_ciphers += i
     return result_ciphers
 
-def repetition_rate_generation(your_text: str):
+def get_dictionary(text: str) -> dict:
     dictionary = dict()
-    for i in your_text:
-        dictionary[i] = your_text.count(i)
+    for i in text:
+        dictionary[i] = text.count(i)
     dictionary = dict(sorted(dictionary.items(), key=lambda item: item[1], reverse=True))
-    # print(dictionary)
     return dictionary
 
+def repetition_rate_generation(initial_text: str, encrypted_text: str):
+    dictionary_for_initial_text = get_dictionary(initial_text)
+    dictionary_for_encrypted_text = get_dictionary(encrypted_text)
+    #print(dictionary_for_initial_text)
+    #print(dictionary_for_encrypted_text)
+
+initial_txt = read_file('text.txt')
+res = text_encoding_сaesars_cipher()
+repetition_rate_generation(initial_txt,res)
