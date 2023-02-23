@@ -34,6 +34,9 @@ def text_encoding_сaesars_cipher() -> str:
     return result_ciphers
 
 def get_dictionary(text: str) -> dict:
+    """
+        function to get a sorted in descending order dictionary
+    """
     dictionary = dict()
     for i in text:
         dictionary[i] = text.count(i)
@@ -41,11 +44,29 @@ def get_dictionary(text: str) -> dict:
     return dictionary
 
 def repetition_rate_generation(initial_text: str, encrypted_text: str):
+    """
+        dictionary generation function for the initial text and the encrypted
+        text (using frequency analysis for decryption)
+    """
     dictionary_for_initial_text = get_dictionary(initial_text)
     dictionary_for_encrypted_text = get_dictionary(encrypted_text)
-    #print(dictionary_for_initial_text)
-    #print(dictionary_for_encrypted_text)
+    return dictionary_for_initial_text, dictionary_for_encrypted_text
+
+def text_transcription(text: str, dict1: dict, dict2: dict):
+    """
+        text interpretation function
+    """
+    result = ""
+    list_for1_keys = list(dict1.keys())
+    list_for2_keys = list(dict2.keys())
+    for item in text:
+        id = list_for2_keys.index(item)
+        result += list_for1_keys[id]
+    return result
 
 initial_txt = read_file('text.txt')
 res = text_encoding_сaesars_cipher()
-repetition_rate_generation(initial_txt,res)
+dictionary_for_initial_text, dictionary_for_encrypted_text=repetition_rate_generation(initial_txt,res)
+print(dictionary_for_initial_text)
+print(dictionary_for_encrypted_text)
+print(text_transcription(res, dictionary_for_initial_text, dictionary_for_encrypted_text))
