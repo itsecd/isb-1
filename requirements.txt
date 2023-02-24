@@ -1,0 +1,6 @@
+ipykernel==6.15.3
+ipython==8.5.0
+jupyter-core==4.11.1
+jupyter_client==7.3.5
+python-dateutil==2.8.2
+python_version==3.9.12
