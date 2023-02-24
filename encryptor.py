@@ -1,5 +1,16 @@
-ALPHABET = 'АБВГДЕЖЗИЙКЛМОПРСТУФХЦЧШЩЪЫЬЭЮЯ'
-CIPHER = 'ЯАБВГДЕЖЗИЙКЛМОПРСТУФХЦЧШЩЪЫЬЭЮ'
+ALPHABET = 'АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ'
+CIPHER = 'БЯЫАГЖРТУЭХЩМЙИЬДОЧКЮВНЪШЕФСЦЛПЗ'
+
+
+def read_text(file_name: str) -> str:
+    with open(file_name, 'r', encoding='utf-8') as f:
+        text = f.read()
+    return text
+
+
+def write_text(file_name: str, text: str) -> None:
+    with open(file_name, 'w', encoding='utf-8') as f:
+        f.write(text)
 
 
 def encryptor(alphabet: str, key: str, text: str) -> str:
@@ -14,6 +25,6 @@ def encryptor(alphabet: str, key: str, text: str) -> str:
 
 
 if __name__ == "__main__":
-    my_cipher = encryptor(ALPHABET, CIPHER,
-              'Дело в том, что самые интересные и изящные научные результаты сплошь и рядом обладают свойством казаться непосвященным заумными и тоскливо-непонятными. Люди, далекие от науки, в наше время ждут от нее чуда и только чуда и практически не способны отличить настоящее научное чудо от фокуса или какого-нибудь интеллектуального сальто-мортале. Наука чародейства и волшебства не составляет исключения. Организовать на телестудии конференцию знаменитых привидений или просверлить взглядом дыру в полуметровой бетонной стене могут многие, и это никому не нужно, но это приводит в восторг почтеннейшую публику, плохо представляющую себе, до какой степени наука сплела и перепутала понятия сказки и действительности. ')
-    print(my_cipher)
+    original_text = read_text('original_text.txt')
+    my_cipher = encryptor(ALPHABET, CIPHER, original_text)
+    write_text('ciphertext.txt', my_cipher)
