@@ -10,9 +10,14 @@ def frequency_analysis(alphabet: str, text: str) -> dict:
     word_count = sum(frequencies)
     for i in range(len(frequencies)):
         frequencies[i] /= word_count
-    print(frequencies)
+    word_frequencies = dict(zip(alphabet, frequencies))
+    print(word_frequencies)
+    return word_frequencies
 
 
 if __name__ == "__main__":
     ciphertext = read_text('cod7.txt')
-    frequency_analysis(ALPHABET, ciphertext)
+    text_alphabet = list(set(ciphertext))
+    text_alphabet.remove('\n')
+    text_alphabet = "".join(text_alphabet)
+    frequency_analysis(text_alphabet, ciphertext)
