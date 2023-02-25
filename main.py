@@ -80,6 +80,7 @@ def get_encryption_keys(dict1: dict, dict2: dict) -> dict:
     return dictionary
 
 if __name__ == "__main__":
+# task 1
     initial_txt = read_file('text.txt')
     res = text_encoding_сaesars_cipher()
     write_in_file('encryption.txt', res)
@@ -95,3 +96,90 @@ if __name__ == "__main__":
     # encryption key dictionary
     keys_dict = get_encryption_keys(dictionary_for_initial_text, dictionary_for_encrypted_text)
     write_in_file('key.txt', "' ' : ' ',\n'О' : 'С',\n'Е' : 'З',\n'И' : 'Л',\n'Н' : 'Р',\n'А' : 'Г',\n'Т' : 'Х',\n'Р' : 'У',\n'С' : 'Ф',\n'П' : 'Т',\n'Д' : 'Ж',\n'Ы' : 'Ю',\n'Л' : 'О',\n'В' : 'Е',\n'Я' : 'В',\n'М' : 'П',\n'К' : 'Н',\n'Г' : 'Ё',\n'Х' : 'Ш',\n'З' : 'К',\n',' : ',',\n'Б' : 'Д',\n'Ч' : 'Ъ',\n'Ь' : 'Я',\n'Й' : 'М',\n'У' : 'Ц',\n'Ю' : 'Б',\n'.' : '.',\n'Ф' : 'Ч',\n'Ц' : 'Щ',\n'Ш' : 'Ы',\n'Ж' : 'Й',\n'Э' : 'А',\n':' : ':',\n'-' : '-',\n'Щ' : 'Ь'")
+# task 2
+    text_ = read_file('cod4.txt')
+    print(text_)
+    dictionary_for_encrypted_text = get_dictionary(text_)
+    dictionary_for_initial_text = get_dictionary(BY_FREQUENCY_ALPHABET)
+    print(dictionary_for_encrypted_text)
+    print(dictionary_for_initial_text)
+
+    dict_keys = {}
+    text_ = text_.replace('Ы', 'Ш')
+    dict_keys['Ы'] = 'Ш'
+    text_ = text_.replace(' ', 'Ы')
+    dict_keys[' '] = 'Ы'
+    text_ = text_.replace('М', ' ')
+    dict_keys['М'] = ' '
+    text_ = text_.replace('Х', 'Н')
+    dict_keys['Х'] = 'Н'
+    text_ = text_.replace('Ф', 'М')
+    dict_keys['Ф'] = 'М'
+    text_ = text_.replace('И', 'Ф')
+    dict_keys['И'] = 'Ф'
+    text_ = text_.replace('>', 'И')
+    dict_keys['>'] = 'И'
+    text_ = text_.replace('Р', 'З')
+    dict_keys['Р'] = 'З'
+    text_ = text_.replace('Д', 'Р')
+    dict_keys['Д'] = 'Р'
+    text_ = text_.replace('C', 'Д')
+    dict_keys['C'] = 'Д'
+    text_ = text_.replace('Е', 'С')
+    dict_keys['Е'] = 'С'
+    text_ = text_.replace('Е', 'Ы')
+    dict_keys['Е'] = 'Ы'
+    text_ = text_.replace('О', 'Е')
+    dict_keys['О'] = 'Е'
+    text_ = text_.replace('Л', 'Я')
+    dict_keys['Л'] = 'Я'
+    text_ = text_.replace('У', 'Л')
+    dict_keys['У'] = 'Л'
+    text_ = text_.replace('Т', 'У')
+    dict_keys['Т'] = 'У'
+    text_ = text_.replace('П', 'Ж')
+    dict_keys['П'] = 'Ж'
+    text_ = text_.replace('2', 'П')
+    dict_keys['2'] = 'П'
+    text_ = text_.replace('О', 'Й')
+    dict_keys['2'] = 'П'
+    text_ = text_.replace('1', 'О')
+    dict_keys['1'] = 'О'
+    text_ = text_.replace('Ь', 'Ц')
+    dict_keys['Ь'] = 'Ц'
+    text_ = text_.replace('А', 'Ь')
+    dict_keys['А'] = 'Ь'
+    text_ = text_.replace('A', 'В')
+    dict_keys['A'] = 'В'
+    text_ = text_.replace('4', 'А')
+    dict_keys['4'] = 'А'
+    text_ = text_.replace('B', 'Г')
+    dict_keys['B'] = 'Г'
+    text_ = text_.replace('R', 'Т')
+    dict_keys['R'] = 'Т'
+    text_ = text_.replace('Ц', 'Щ')
+    dict_keys['Ц'] = 'Щ'
+    text_ = text_.replace('Ч', 'Ц')
+    dict_keys['Ч'] = 'Ц'
+    text_ = text_.replace('<', 'Ч')
+    dict_keys['<'] = 'Ч'
+    text_ = text_.replace('Ю', 'К')
+    dict_keys['Ю'] = 'К'
+    text_ = text_.replace('К', 'Ю')
+    dict_keys['К'] = 'Ю'
+    text_ = text_.replace('8', 'К')
+    dict_keys['8'] = 'К'
+    text_ = text_.replace('Б', 'Э')
+    dict_keys['Б'] = 'Э'
+    text_ = text_.replace('Й', 'Х')
+    dict_keys['Й'] = 'Х'
+    text_ = text_.replace('7', 'Й')
+    dict_keys['7'] = 'Й'
+    text_ = text_.replace('T', 'У')
+    dict_keys['T'] = 'У'
+    text_ = text_.replace('5', 'Б')
+    dict_keys['5'] = 'Б'
+    with open('key_for_task2.txt', 'w') as file:
+        for key,val in dict_keys.items():
+            file.write('{} : {}\n'.format(key,val))
+    write_in_file("decoding.txt", text_)
