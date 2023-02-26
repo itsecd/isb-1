@@ -55,12 +55,20 @@ if __name__ == "__main__":
                   f'{ciphertext_frequencies[i][0]} ({ciphertext_frequencies[i][1]})')
         print(ciphertext)
         print(current_text)
-        print("Введите команду: ", end='')
-        command = int(input())
+        command = int(input('Введите команду: '))
         if command == 0:
             is_open = False
         elif command == 1:
-            pass
+            old_word = input('Введите букву, которую нужно заменить: ').upper()
+            new_word = input('Введите букву, на которую нужно заменить: ').upper()
+            tms = ''
+            for i in range(len(ciphertext)):
+                if ciphertext[i] == old_word:
+                    tms += new_word
+                else:
+                    tms += current_text[i]
+            current_text = tms
         elif command == -1:
-            pass
+            del_word = input('Введите букву, которую нужно удалить: ').upper()
+            current_text = current_text.replace(del_word, '*')
         print('\n' * 50)
