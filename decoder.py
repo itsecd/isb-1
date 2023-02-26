@@ -1,4 +1,3 @@
-import os
 from encryptor import read_text
 ALPHABET = 'АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ '
 
@@ -42,6 +41,12 @@ if __name__ == "__main__":
     text_alphabet = create_alphabet(ciphertext)
     russian_frequencies = list(read_true_frequencies('true_frequencies.txt').items())
     ciphertext_frequencies = list(frequency_analysis(text_alphabet, ciphertext).items())
+    current_text = ''
+    for symbol in ciphertext:
+        if symbol != '\n':
+            current_text += '*'
+        else:
+            current_text += symbol
     is_open = True
     while is_open:
         print("частота в русском языке --> частота шифра")
@@ -49,6 +54,13 @@ if __name__ == "__main__":
             print(f'{russian_frequencies[i][0]} ({russian_frequencies[i][1]}) --> '
                   f'{ciphertext_frequencies[i][0]} ({ciphertext_frequencies[i][1]})')
         print(ciphertext)
+        print(current_text)
         print("Введите команду: ", end='')
         command = int(input())
-        os.system('cls')
+        if command == 0:
+            is_open = False
+        elif command == 1:
+            pass
+        elif command == -1:
+            pass
+        print('\n' * 50)
