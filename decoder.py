@@ -66,7 +66,8 @@ def frequency_analysis(alphabet: str, text: str) -> dict:
 
 
 if __name__ == "__main__":
-    ciphertext = read_text('cod7.txt')
+    cipher_key = '?' * len(ALPHABET)
+    ciphertext = read_text('task_2-ciphertext.txt')
     text_alphabet = create_alphabet(ciphertext)
     russian_frequencies = list(read_true_frequencies('true_frequencies.txt').items())
     ciphertext_frequencies = list(frequency_analysis(text_alphabet, ciphertext).items())
@@ -77,26 +78,34 @@ if __name__ == "__main__":
         for i in range(min(len(ciphertext_frequencies), len(russian_frequencies))):
             print(f'{russian_frequencies[i][0]} ({russian_frequencies[i][1]}) --> '
                   f'{ciphertext_frequencies[i][0]} ({ciphertext_frequencies[i][1]})')
-        print(ciphertext)
+        print(f'\n{ciphertext}\n')
         print(current_text)
+        print(f'\nКлюч: ---{ALPHABET}---\n      ---{cipher_key}---')
         command = input('Введите команду: ')
         match command:
             case '0':
                 is_open = False
             case '1':
-                old_character = input('Введите букву, которую нужно заменить: ').upper()
-                new_character = input('Введите букву, на которую нужно заменить: ').upper()
+                old_character = input('Введите букву, которую нужно заменить: ')
+                new_character = input('Введите букву, на которую нужно заменить: ')
                 tms = ''
                 for i in range(len(ciphertext)):
-                    if ciphertext[i].upper() == old_character:
+                    if ciphertext[i] == old_character:
                         tms += new_character
                     else:
                         tms += current_text[i]
+                i = ALPHABET.find(new_character)
+                if i != -1:
+                    cipher_key = cipher_key[:i] + old_character + cipher_key[i + 1:]
                 current_text = tms
             case '-1':
-                del_character = input('Введите букву, которую нужно удалить: ').upper()
+                del_character = input('Введите букву, которую нужно удалить: ')
                 current_text = current_text.replace(del_character, '*')
-            case 's':
+                i = ALPHABET.find(del_character)
+                if i != -1:
+                    cipher_key = cipher_key[:i] + '?' + cipher_key[i + 1:]
+            case 'S':
                 filename = input('Введите путь к файлу: ')
                 write_text(filename, current_text)
         print('\n' * 50)
+0

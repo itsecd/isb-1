@@ -57,6 +57,6 @@ def encryptor(alphabet: str, cipher_key: str, text: str) -> str:
 
 
 if __name__ == "__main__":
-    original_text = read_text('original_text.txt')
+    original_text = read_text('task_1-original_text.txt')
     my_cipher = encryptor(ALPHABET, CIPHER_KEY, original_text)
-    write_text('ciphertext.txt', my_cipher)
+    write_text('task_1-ciphertext.txt', my_cipher)
