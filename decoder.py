@@ -23,7 +23,7 @@ def read_true_frequencies(file_name: str) -> dict:
     return true_frequencies
 
 
-def create_alphabet(text: str, ignore_symbols: str) -> str:
+def create_alphabet(text: str, ignore_symbols: str = '') -> str:
     """
     The function create an alphabet for a text, ignoring symbols from the ignore_symbols.
 
@@ -33,7 +33,9 @@ def create_alphabet(text: str, ignore_symbols: str) -> str:
     """
     alphabet = list(set(text))
     for character in ignore_symbols:
-        alphabet.remove(character)
+        for index in range(len(alphabet)):
+            if alphabet[index] == character:
+                alphabet.pop(index)
     alphabet = "".join(alphabet)
     return alphabet
 
@@ -65,15 +67,10 @@ def frequency_analysis(alphabet: str, text: str) -> dict:
 
 if __name__ == "__main__":
     ciphertext = read_text('cod7.txt')
-    text_alphabet = create_alphabet(ciphertext, '\n')
+    text_alphabet = create_alphabet(ciphertext)
     russian_frequencies = list(read_true_frequencies('true_frequencies.txt').items())
     ciphertext_frequencies = list(frequency_analysis(text_alphabet, ciphertext).items())
-    current_text = ''
-    for symbol in ciphertext:
-        if symbol != '\n':
-            current_text += '*'
-        else:
-            current_text += symbol
+    current_text = '*' * len(ciphertext)
     is_open = True
     while is_open:
         print("частота в русском языке --> частота шифра")
@@ -91,7 +88,7 @@ if __name__ == "__main__":
                 new_character = input('Введите букву, на которую нужно заменить: ').upper()
                 tms = ''
                 for i in range(len(ciphertext)):
-                    if ciphertext[i] == old_character:
+                    if ciphertext[i].upper() == old_character:
                         tms += new_character
                     else:
                         tms += current_text[i]
