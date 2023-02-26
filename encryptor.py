@@ -1,3 +1,7 @@
+import logging
+
+logger = logging.getLogger()
+logger.setLevel('INFO')
 ALPHABET = 'АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ'
 CIPHER_KEY = 'БЯЫАГЖРТУЭХЩМЙИЬДОЧКЮВНЪШЕФСЦЛПЗ'
 
@@ -9,8 +13,11 @@ def read_text(file_name: str) -> str:
     :param file_name: name of file.
     :return: text from file.
     """
-    with open(file_name, 'r', encoding='utf-8') as f:
-        text = f.read()
+    try:
+        with open(file_name, 'r', encoding='utf-8') as f:
+            text = f.read()
+    except OSError as err:
+        logging.warning(f'Во время чтения файла {file_name} произошла ошибка:\n{err}')
     return text
 
 
@@ -22,8 +29,11 @@ def write_text(file_name: str, text: str) -> None:
     :param text: text for writing.
     :return: None.
     """
-    with open(file_name, 'w', encoding='utf-8') as f:
-        f.write(text)
+    try:
+        with open(file_name, 'w', encoding='utf-8') as f:
+            f.write(text)
+    except OSError as err:
+        logging.warning(f'Во время записи в файл {file_name} произошла ошибка:\n{err}')
 
 
 def encryptor(alphabet: str, cipher_key: str, text: str) -> str:
@@ -38,11 +48,11 @@ def encryptor(alphabet: str, cipher_key: str, text: str) -> str:
     """
     text = text.upper()
     cipher = ''
-    for word in text:
-        if word in alphabet:
-            cipher += cipher_key[alphabet.find(word)]
+    for character in text:
+        if character in alphabet:
+            cipher += cipher_key[alphabet.find(character)]
         else:
-            cipher += word
+            cipher += character
     return cipher
 
 
