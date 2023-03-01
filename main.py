@@ -13,3 +13,12 @@ with open("Text.txt", mode='r', encoding='utf-8') as T:
                 itog += i
         print(itog)
         ET.write(itog)
+
+
+def search_index(text: str) -> dict:
+    ker = dict()
+    lst = list(set(text))
+    for i in lst:
+        ker[i] = text.count(i)
+    ker = sorted(ker.items(), key=lambda x: x[1], reverse=True)
+    return ker
