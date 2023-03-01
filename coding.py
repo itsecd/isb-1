@@ -1,10 +1,10 @@
-ALF = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ "
+ALF = "абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ .,?!-"
 
 
 def find_number(text: str) -> list:
     new_text = []
     for itim in text:
-        new_text.append(ALF.find(itim.upper())+1)
+        new_text.append(ALF.find(itim)+1)
     return new_text
 
 
@@ -26,8 +26,8 @@ def spy(text_number: list) -> str:
     spy_text = ""
     for word in text_number:
         spy_text += ALF[word-1]
-    # print(spy_text)
-    return spy_text.lower()
+    print(spy_text)
+    return spy_text
 
 
 def encryption(text: str, key: list) -> str:
