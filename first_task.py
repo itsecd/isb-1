@@ -10,7 +10,7 @@ def save_text(text:str, filename:str) -> None:
 
 def encryption(text: str, alp: str, key: str) -> str:
     offset = 0
-    symbols = '1234567890!@#$%^&*()?\/[]{}()=-.,;:\'"'
+    symbols = '1234567890!@#$%^&*()?\/[]{}()=-.,; :\'"'
     key = list(key)
     for letter in list(alp):
         if letter == key[0]: break
@@ -18,9 +18,10 @@ def encryption(text: str, alp: str, key: str) -> str:
     result = []
     alp = alp.lower()
     text = text.lower()
+    length = len(alp)
     for letter in text:
         if not letter in symbols:
-            result.append(alp[alp.find(letter)+offset])
+            result.append(alp[(alp.find(letter)+offset) % length])
         else:
             result.append(letter)
     return ''.join(result)
