@@ -20,7 +20,7 @@ def encode(text: str, key: int)->str:
         exit()
     
     for letter in text:
-        buffer += shifter.get_shifted(letter)
+        buffer += shifter.shift_encode(letter)
         
     return buffer
         
