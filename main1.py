@@ -1,13 +1,12 @@
-
-
 def read_file(file_name):
     with open(f'{file_name}.txt', 'r', encoding='utf-8') as file:
         return file.read()
 
 
 def save_file(file_name, text):
-    with open(f'{file_name}.txt', 'w', encoding='utf-8') as file:
-        file.write(text)
+    with open(f'{file_name}.txt', 'a', encoding='utf-8') as file:
+        
+        file.write('\n' + 'Зашифрованный текст:' + '\n'+ text)
 
 
 def caesar_cipher(text, shift):
@@ -38,3 +37,13 @@ def caesar_cipher(text, shift):
         else:
             encrypted_text += char
     return encrypted_text
+
+
+def main():
+    text = read_file('text1')
+    new_text = caesar_cipher(text, 4)
+    save_file('text1', new_text)
+
+
+if __name__ == "__main__":
+    main()
