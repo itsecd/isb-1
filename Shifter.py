@@ -1,5 +1,5 @@
-alphabet_lover = list("абвгдеёжзийклмнопрстуфхцчшщъыьэюяабвгдеёжзийклмнопрстуфхцчшщъыьэюя")
-alphabet_upper = list("АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ")
+alphabet_lover = list("абвгдежзийклмнопрстуфхцчшщъыьэюяабвгдежзийклмнопрстуфхцчшщъыьэюя")
+alphabet_upper = list("АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯАБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ")
 
 class Shifter:
     """Give a shift and get a letter shifted by russian alphabet
@@ -21,19 +21,21 @@ class Shifter:
         except:
             return letter
         
-    def shift_decode(self, letter: str)-> str:
+    def shift_decode(self, letter: str):
         try:
             
             try:
-                return alphabet_lover[alphabet_lover.index(letter) - self.shift + len(alphabet_lover)]
+                id = int(len(alphabet_lover)/2) + alphabet_lover.index(letter) - self.shift
+                return alphabet_lover[id]
             except:
-                return alphabet_upper[alphabet_upper.index(letter) - self.shift + len(alphabet_upper)]
+                id = int(len(alphabet_upper)/2) + alphabet_upper.index(letter) - self.shift
+                return alphabet_upper[id]
         except:
             return letter
         
     
     def get_shift(a: str, b: str):
-        return ord(a) - ord(b)
+        return abs(ord(a) - ord(b))
         
         
         

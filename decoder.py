@@ -1,7 +1,6 @@
 from File import File
-from Shifter import Shifter
-
-upper_alph = list("АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ")
+import Shifter
+from collections import Counter
 
 possibility_dict = {
     "О" : 0.096456,
@@ -23,26 +22,27 @@ possibility_dict = {
     "Ы" : 0.015707,
     "Ь" : 0.015103,
     "У" : 0.013290,
-    "Ч" : 0.011679
+    "Ч" : 0.011679,
+    " " : 0.128675
 }
 
 def count_letters(text: str) -> dict:
+    
     exp_dict = dict()
     
     total_letters = 0
     
-    buffer = list()
-    
-    text = text.upper()
+    buffer = list() #remember counted letters
     
     for lett in text:
-        if lett in upper_alph: total_letters+=1 # total letters
+        #if lett in Shifter.alphabet_upper: total_letters+=1 # total letters
+        if lett != '\n' :total_letters+=1
     
     for letter in text:
-        if letter in upper_alph and (not (letter in buffer)):
-            
-            number_of_letters = text.count(letter) # for one letter
-            exp_dict[letter] = (number_of_letters / total_letters)
+        
+        if (not (letter in buffer)) and letter!='\n':    
+            count_for_one_letter = text.count(letter) # for one letter
+            exp_dict[letter] = (count_for_one_letter / total_letters)
         else:
             pass
         
@@ -52,74 +52,69 @@ def decoder(exp_dict: dict):
     
     shift_dict = dict()
     
-    for letter in exp_dict:
+    for src in exp_dict:
         
-        let_buf = str()
-        delta = 1
+        let_buf = str() #remmeber sutable letter
+        delta = 1 # possib_from_text - possib_from_RU
         
-        for let in possibility_dict:
-            if abs(exp_dict[letter] - possibility_dict[let]) < delta: 
-                delta = abs(exp_dict[letter] - possibility_dict[let])
-                let_buf = let
-        
-        shift_dict[letter] = let_buf
+        for alph in possibility_dict:
+            
+            if abs(possibility_dict[alph] - exp_dict[src]) < delta: 
+                delta = abs(possibility_dict[alph] - exp_dict[src])
+                let_buf = alph
+                
+        print(f"[{let_buf} : {possibility_dict[let_buf]}] <- [{src} : {exp_dict[src]}]")
+        shift_dict[src] = let_buf
         
     return shift_dict
 
 # def find_key(shift_dict: dict):
-#     values = list()
+#     possible_keys = list()
     
 #     for letter in shift_dict:
-#         difference = Shifter.get_shift(letter, shift_dict[letter])
-#         print (f"{letter} - {shift_dict[letter]} = {difference}")
-#         values.append(difference)
+#         possible_keys.append(Shifter.Shifter.get_shift(letter, shift_dict[letter]))
     
-#     return round(sum(values) / len(values))
+#     c = Counter(possible_keys)
     
-def changer(text: str, shift_dict: dict)-> str:
+#     return c.most_common(1)[0][0]
+    
+def changer(text, shift_dict):
     output_text = str()
     
     for letter in text:
-        if letter.upper() not in upper_alph: output_text += letter
     
-        elif letter.isupper():
-            output_text += shift_dict[letter]
-            
-        elif letter.islower():
-            output_text += shift_dict[letter.upper()].lower()
-    
+        if letter in shift_dict: output_text += shift_dict[letter]
+        
     return output_text
     
 if __name__=="__main__":
     
+    filename = "./decoder_data/cod7"
+    
     src_text = str()
    
     try:
-        src_file = File("./coder_data/output_text.txt", "r")
+        src_file = File(filename , "r")
         src_text = src_file.read()
     except:
         print("Input file error (isn't it's name *.txt?)")
         exit()
         
-    exp_dict = count_letters(src_text)
+    exp_dict = count_letters(src_text) # { a_letter_from_text : probability }
     
-    shift_dict = decoder(exp_dict)
+    shift_dict = decoder(exp_dict) # { a_letter_from_text  : approxed_letter }
     
     out_text = changer(src_text, shift_dict)
     
+    print(out_text)
+                
     try:
         out_file = File("./decoder_data/output_text", "w")
         out_file.write(out_text)
     except:
         print("Output file error (does it already exist?)")
         exit()
-    
-    # key = find_key(shift_dict)
-    
-    # shifter = Shifter(key)
-    
-    # for letter in src_text:
-    #     print(shifter.shift_decode(letter),end='')
+        
     
     
         

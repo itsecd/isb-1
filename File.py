@@ -15,9 +15,9 @@ class File:
         Args:
             data (str): text to be written
         """
-        if not (self.mode =="w"): raise "Mode error"
+        if (not (self.mode == "w")) or (not (self.mode == "a")): raise Exception
         
-        with open(f"{self.filename}.txt", self.mode) as file:
+        with open(self.filename, self.mode) as file:
             file.write(data)
     
     def read(self):
@@ -26,6 +26,6 @@ class File:
         Returns:
             str: data
         """
-        if not (self.mode == "r"): raise "Mode error"
+        if not (self.mode == "r") or not (self.mode == "a"): raise Exception
         with open(self.filename, self.mode) as file:
-            return file.read()
+            return file.read().upper()
