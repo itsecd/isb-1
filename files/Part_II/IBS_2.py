@@ -20,6 +20,10 @@ with open("files/Part_II/text", "r", encoding="utf-8") as f:
         print(*c)
 
     dict = {}
+    
+with open("files/Part_II/result", "w", encoding="utf-8") as f: 
+    f.write(text.lower()) 
+    f.write("\n") 
 
     text = text.replace(" ", "{")
     text = text.replace("Я", " ")
@@ -49,6 +53,10 @@ with open("files/Part_II/text", "r", encoding="utf-8") as f:
     text = text.replace("М", "Н")
     dict["M"] = "Н"
 
+    print(text)
+    f.write(text.lower()) 
+    f.write("\n") 
+    
     text = text.replace("И", "$")
     text = text.replace("t", "И")
     dict["t"] = "И"
@@ -76,6 +84,11 @@ with open("files/Part_II/text", "r", encoding="utf-8") as f:
     text = text.replace("Ф", "Ё")
     text = text.replace("Т", "Ф")
     dict["T"] = "Ф"
+
+    print(text)
+    f.write(text.lower()) 
+    f.write("\n") 
+    
 
     text = text.replace("Р", "Т")
     dict["Р"] = "T"
@@ -116,6 +129,11 @@ with open("files/Part_II/text", "r", encoding="utf-8") as f:
     dict["Ы"] = "Ю"
     dict["Щ"] = "Ы"
 
+    print(text)
+    f.write(text.lower()) 
+    f.write("\n")  
+    
+
     text = text.replace(">", "У")
     dict["З"] = "У"
 
@@ -133,11 +151,10 @@ with open("files/Part_II/text", "r", encoding="utf-8") as f:
     text = text.replace("?", ".")
     dict["?"] = "."
 
-
-
-with open("files/Part_II/result", "w", encoding="utf-8") as f: 
+    print(text)
     f.write(text.lower()) 
     f.write("\n") 
+
 
 with open("files\Part_II\key", "w", encoding="utf-8") as f: 
     f.write(str(dict))
