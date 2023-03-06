@@ -15,7 +15,7 @@ class File:
         Args:
             data (str): text to be written
         """
-        if (not (self.mode == "w")) or (not (self.mode == "a")): raise Exception
+        if (not (self.mode == "w")) and (not (self.mode == "a")): raise Exception
         
         with open(self.filename, self.mode) as file:
             file.write(data)
@@ -26,6 +26,6 @@ class File:
         Returns:
             str: data
         """
-        if not (self.mode == "r") or not (self.mode == "a"): raise Exception
+        if not (self.mode == "r") and not (self.mode == "a"): raise Exception
         with open(self.filename, self.mode) as file:
             return file.read().upper()

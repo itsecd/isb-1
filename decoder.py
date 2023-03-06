@@ -2,6 +2,41 @@ from File import File
 import Shifter
 from collections import Counter
 
+exp_shift_dict = {
+' ' : 'и',
+'Х' : ' ',
+'Е' : 'о',
+'Д': 'н',
+'А': 'и',
+'Ч': 'а',
+'Ы': 'е',
+'Б': 'к',
+'1': 'л',
+'П': 'щ',
+'Ъ': 'г',
+'Щ': 'в',
+'T': 'р',
+'Ф': 'я',
+'Й': 'т',
+'2': 'м',
+'>': 'ы',
+'R': 'п',
+'Я': 'з',
+'У': 'ю',
+'W': 'д',
+'5': 'ч',
+'7': 'ь',
+'К': 'у',
+'И': 'с',
+'Ь': 'ж',
+'Л': 'ф',
+'4': 'ц',
+'8': 'э',
+'О': 'ш',
+'А': 'й',
+'М': 'х'
+}
+
 possibility_dict = {
     "О" : 0.096456,
     "И" : 0.075312,
@@ -67,16 +102,6 @@ def decoder(exp_dict: dict):
         shift_dict[src] = let_buf
         
     return shift_dict
-
-# def find_key(shift_dict: dict):
-#     possible_keys = list()
-    
-#     for letter in shift_dict:
-#         possible_keys.append(Shifter.Shifter.get_shift(letter, shift_dict[letter]))
-    
-#     c = Counter(possible_keys)
-    
-#     return c.most_common(1)[0][0]
     
 def changer(text, shift_dict):
     output_text = str()
@@ -104,7 +129,9 @@ if __name__=="__main__":
     
     shift_dict = decoder(exp_dict) # { a_letter_from_text  : approxed_letter }
     
-    out_text = changer(src_text, shift_dict)
+    # process of changing shift_dict to exp_shift_dict
+    
+    out_text = changer(src_text, exp_shift_dict)
     
     print(out_text)
                 
