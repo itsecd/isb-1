@@ -3,10 +3,10 @@ def read_file(file_name):
         return file.read()
 
 
-def save_file(file_name, text):
+def save_file(file_name, text, shift):
     with open(f'{file_name}.txt', 'a', encoding='utf-8') as file:
         
-        file.write('\n' + 'Зашифрованный текст:' + '\n'+ text)
+        file.write('\n' + 'Зашифрованный текст со сдвигом {shift}:' + '\n'+ text)
 
 
 def caesar_cipher(text, shift):
@@ -41,8 +41,10 @@ def caesar_cipher(text, shift):
 
 def main():
     text = read_file('text1')
-    new_text = caesar_cipher(text, 4)
-    save_file('text1', new_text)
+    print('Введите сдвиг')
+    shift=int(input())
+    new_text = caesar_cipher(text, shift)
+    save_file('text1', new_text, shift)
 
 
 if __name__ == "__main__":
